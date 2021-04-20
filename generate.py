@@ -62,11 +62,15 @@ def report_record_count(file_path):
 def get_this_month_str():
     return datetime.today().strftime("%Y-%m") 
 
+def get_today_str():
+    return datetime.today().strftime("%Y-%m-%d")
 
 if __name__ == "__main__":
     BASE_DIR = os.path.dirname(__file__)
     folder_path = os.path.join(BASE_DIR, get_this_month_str())
 
+    today_str = get_today_str()
+
     os.makedirs(folder_path, exist_ok=True)
-    status_count(os.path.join(folder_path, "status.csv"))
-    report_record_count(os.path.join(folder_path, "report_records.csv"))
+    status_count(os.path.join(folder_path, f"status_{today_str}.csv"))
+    report_record_count(os.path.join(folder_path, f"report_records_{today_str}.csv"))
